@@ -3,3 +3,4 @@ WebApplication1/obj*
 */bin/*
 */obj/*
 .vs*
+*.cache
