@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Library.Repositories
+namespace Domain.Library.Services
 {
-    public interface IUserRepository
+    public interface IUserService
     {
         AspNetUser LoadUser(string userID);
     }

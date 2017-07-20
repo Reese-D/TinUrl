@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Domain.AppData;
+using System.Web.Mvc;
 
 namespace Domain.Implementation.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
-        public AspNetUser LoadUser(int userID)
+        public UserRepository(LinqToSqlDataDataContext dataContext) : base(dataContext)
+        { 
+        }
+
+        public AspNetUser LoadUser(string userID)
         {
-            throw new NotImplementedException();
+            return DataContext.AspNetUsers.First(u => u.Id == userID);
         }
     }
 }
