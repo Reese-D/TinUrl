@@ -20,7 +20,6 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index(string redirectId)
         {
-            var user = UserService.LoadUser("3fcf7849-f773-4dc3-873d-180cfde32b95");
             return View();
         }
 
