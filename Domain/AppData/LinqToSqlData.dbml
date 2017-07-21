@@ -17,6 +17,7 @@
       <Association Name="AspNetUser_AspNetUserRole" Member="AspNetUserRoles" ThisKey="Id" OtherKey="UserId" Type="AspNetUserRole" />
       <Association Name="AspNetUser_AspNetUserLogin" Member="AspNetUserLogins" ThisKey="Id" OtherKey="UserId" Type="AspNetUserLogin" />
       <Association Name="AspNetUser_AspNetUserClaim" Member="AspNetUserClaims" ThisKey="Id" OtherKey="UserId" Type="AspNetUserClaim" />
+      <Association Name="AspNetUser_TinyUrl" Member="TinyUrls" ThisKey="Id" OtherKey="AspNetUsersID" Type="TinyUrl" />
     </Type>
   </Table>
   <Table Name="dbo.AspNetUserRoles" Member="AspNetUserRoles">
@@ -49,6 +50,14 @@
       <Column Name="Id" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Association Name="AspNetRole_AspNetUserRole" Member="AspNetUserRoles" ThisKey="Id" OtherKey="RoleId" Type="AspNetUserRole" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TinyUrls" Member="TinyUrls">
+    <Type Name="TinyUrl">
+      <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UrlString" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="AspNetUsersID" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Association Name="AspNetUser_TinyUrl" Member="AspNetUser" ThisKey="AspNetUsersID" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

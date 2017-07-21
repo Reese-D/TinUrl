@@ -45,6 +45,9 @@ namespace Domain.AppData
     partial void InsertAspNetRole(AspNetRole instance);
     partial void UpdateAspNetRole(AspNetRole instance);
     partial void DeleteAspNetRole(AspNetRole instance);
+    partial void InsertTinyUrl(TinyUrl instance);
+    partial void UpdateTinyUrl(TinyUrl instance);
+    partial void DeleteTinyUrl(TinyUrl instance);
     #endregion
 		
 		public LinqToSqlDataDataContext() : 
@@ -116,6 +119,14 @@ namespace Domain.AppData
 				return this.GetTable<AspNetRole>();
 			}
 		}
+		
+		public System.Data.Linq.Table<TinyUrl> TinyUrls
+		{
+			get
+			{
+				return this.GetTable<TinyUrl>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUsers")]
@@ -154,6 +165,8 @@ namespace Domain.AppData
 		
 		private EntitySet<AspNetUserClaim> _AspNetUserClaims;
 		
+		private EntitySet<TinyUrl> _TinyUrls;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -189,6 +202,7 @@ namespace Domain.AppData
 			this._AspNetUserRoles = new EntitySet<AspNetUserRole>(new Action<AspNetUserRole>(this.attach_AspNetUserRoles), new Action<AspNetUserRole>(this.detach_AspNetUserRoles));
 			this._AspNetUserLogins = new EntitySet<AspNetUserLogin>(new Action<AspNetUserLogin>(this.attach_AspNetUserLogins), new Action<AspNetUserLogin>(this.detach_AspNetUserLogins));
 			this._AspNetUserClaims = new EntitySet<AspNetUserClaim>(new Action<AspNetUserClaim>(this.attach_AspNetUserClaims), new Action<AspNetUserClaim>(this.detach_AspNetUserClaims));
+			this._TinyUrls = new EntitySet<TinyUrl>(new Action<TinyUrl>(this.attach_TinyUrls), new Action<TinyUrl>(this.detach_TinyUrls));
 			OnCreated();
 		}
 		
@@ -471,6 +485,19 @@ namespace Domain.AppData
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_TinyUrl", Storage="_TinyUrls", ThisKey="Id", OtherKey="AspNetUsersID")]
+		public EntitySet<TinyUrl> TinyUrls
+		{
+			get
+			{
+				return this._TinyUrls;
+			}
+			set
+			{
+				this._TinyUrls.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -522,6 +549,18 @@ namespace Domain.AppData
 		}
 		
 		private void detach_AspNetUserClaims(AspNetUserClaim entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = null;
+		}
+		
+		private void attach_TinyUrls(TinyUrl entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = this;
+		}
+		
+		private void detach_TinyUrls(TinyUrl entity)
 		{
 			this.SendPropertyChanging();
 			entity.AspNetUser = null;
@@ -1133,6 +1172,157 @@ namespace Domain.AppData
 		{
 			this.SendPropertyChanging();
 			entity.AspNetRole = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TinyUrls")]
+	public partial class TinyUrl : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _TinyUrlString;
+		
+		private string _UrlString;
+		
+		private string _AspNetUsersID;
+		
+		private EntityRef<AspNetUser> _AspNetUser;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTinyUrlStringChanging(string value);
+    partial void OnTinyUrlStringChanged();
+    partial void OnUrlStringChanging(string value);
+    partial void OnUrlStringChanged();
+    partial void OnAspNetUsersIDChanging(string value);
+    partial void OnAspNetUsersIDChanged();
+    #endregion
+		
+		public TinyUrl()
+		{
+			this._AspNetUser = default(EntityRef<AspNetUser>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinyUrlString", DbType="VarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string TinyUrlString
+		{
+			get
+			{
+				return this._TinyUrlString;
+			}
+			set
+			{
+				if ((this._TinyUrlString != value))
+				{
+					this.OnTinyUrlStringChanging(value);
+					this.SendPropertyChanging();
+					this._TinyUrlString = value;
+					this.SendPropertyChanged("TinyUrlString");
+					this.OnTinyUrlStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UrlString", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string UrlString
+		{
+			get
+			{
+				return this._UrlString;
+			}
+			set
+			{
+				if ((this._UrlString != value))
+				{
+					this.OnUrlStringChanging(value);
+					this.SendPropertyChanging();
+					this._UrlString = value;
+					this.SendPropertyChanged("UrlString");
+					this.OnUrlStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AspNetUsersID", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
+		public string AspNetUsersID
+		{
+			get
+			{
+				return this._AspNetUsersID;
+			}
+			set
+			{
+				if ((this._AspNetUsersID != value))
+				{
+					if (this._AspNetUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAspNetUsersIDChanging(value);
+					this.SendPropertyChanging();
+					this._AspNetUsersID = value;
+					this.SendPropertyChanged("AspNetUsersID");
+					this.OnAspNetUsersIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_TinyUrl", Storage="_AspNetUser", ThisKey="AspNetUsersID", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUser AspNetUser
+		{
+			get
+			{
+				return this._AspNetUser.Entity;
+			}
+			set
+			{
+				AspNetUser previousValue = this._AspNetUser.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetUser.Entity = null;
+						previousValue.TinyUrls.Remove(this);
+					}
+					this._AspNetUser.Entity = value;
+					if ((value != null))
+					{
+						value.TinyUrls.Add(this);
+						this._AspNetUsersID = value.Id;
+					}
+					else
+					{
+						this._AspNetUsersID = default(string);
+					}
+					this.SendPropertyChanged("AspNetUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
