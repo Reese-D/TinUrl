@@ -9,6 +9,6 @@ namespace Domain.Library.Services
 {
     public interface IUserService
     {
-        AspNetUser LoadUser(string userID);
+        AspNetUser LoadUser(string email);
     }
 }

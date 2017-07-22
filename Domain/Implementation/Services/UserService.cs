@@ -16,9 +16,9 @@ namespace Domain.Implementation.Services
             UserRepository = userRepository;
         }
 
-        public AspNetUser LoadUser(string userID)
+        public AspNetUser LoadUser(string email)
         {
-            return UserRepository.LoadUser(userID);
+            return UserRepository.LoadUser(email);
         }
     }
 }

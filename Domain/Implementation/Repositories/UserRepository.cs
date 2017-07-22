@@ -14,9 +14,9 @@ namespace Domain.Implementation.Repositories
         { 
         }
 
-        public AspNetUser LoadUser(string userID)
+        public AspNetUser LoadUser(string email)
         {
-            return DataContext.AspNetUsers.First(u => u.Id == userID);
+            return DataContext.AspNetUsers.First(u => u.Email == email);
         }
     }
 }

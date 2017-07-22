@@ -9,6 +9,6 @@ namespace Domain.Library.Repositories
 {
     public interface IUserRepository
     {
-        AspNetUser LoadUser(string userID);
+        AspNetUser LoadUser(string email);
     }
 }
