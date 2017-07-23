@@ -92,6 +92,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{56515D5B-CEDC-41FC-B210-9A401B240FDF}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebApplication1\WebApplication1.csproj">
       <Project>{3A71FD89-4DA8-4BBA-9935-F26DF992371A}</Project>
       <Name>WebApplication1</Name>
