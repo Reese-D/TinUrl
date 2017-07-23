@@ -133,7 +133,7 @@
     <Compile Include="Implementation\Services\TinyUrlService.cs" />
     <Compile Include="Implementation\Services\UserService.cs" />
     <Compile Include="Library\Repositories\ITinyUrlRepository.cs" />
-    <Compile Include="Library\Repositories\ITinyUrlService.cs" />
+    <Compile Include="Library\Services\ITinyUrlService.cs" />
     <Compile Include="Library\Repositories\IUserRepository.cs" />
     <Compile Include="Library\Services\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
