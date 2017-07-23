@@ -127,6 +127,14 @@ namespace Domain.AppData
 				return this.GetTable<TinyUrl>();
 			}
 		}
+		
+		public System.Data.Linq.Table<MostRecentTinyUrl> MostRecentTinyUrls
+		{
+			get
+			{
+				return this.GetTable<MostRecentTinyUrl>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUsers")]
@@ -1322,6 +1330,51 @@ namespace Domain.AppData
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MostRecentTinyUrl")]
+	public partial class MostRecentTinyUrl
+	{
+		
+		private string _AsciiValue;
+		
+		private string _TinyUrlString;
+		
+		public MostRecentTinyUrl()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AsciiValue", DbType="VarChar(2000)")]
+		public string AsciiValue
+		{
+			get
+			{
+				return this._AsciiValue;
+			}
+			set
+			{
+				if ((this._AsciiValue != value))
+				{
+					this._AsciiValue = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinyUrlString", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string TinyUrlString
+		{
+			get
+			{
+				return this._TinyUrlString;
+			}
+			set
+			{
+				if ((this._TinyUrlString != value))
+				{
+					this._TinyUrlString = value;
+				}
 			}
 		}
 	}

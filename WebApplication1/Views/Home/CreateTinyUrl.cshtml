@@ -1,0 +1,13 @@
+﻿@model WebApplication1.Models.HomeModels.CreateTinyUrlModel
+@{
+    ViewBag.Title = "Create Tiny Url";
+}
+
+@using (Html.BeginForm("CreateTinyUrl", "Home", null, FormMethod.Post, new { @class = "url_form" }))
+{
+    @Html.TextBoxFor(m => m.url)
+    <input type="submit" name="SaveButton" value="Save" />
+}
+
+
+

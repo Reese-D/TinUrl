@@ -60,4 +60,10 @@
       <Association Name="AspNetUser_TinyUrl" Member="AspNetUser" ThisKey="AspNetUsersID" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.MostRecentTinyUrl" Member="MostRecentTinyUrls">
+    <Type Name="MostRecentTinyUrl">
+      <Column Name="AsciiValue" Type="System.String" DbType="VarChar(2000)" CanBeNull="true" />
+      <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

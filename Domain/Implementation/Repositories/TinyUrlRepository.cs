@@ -40,5 +40,15 @@ namespace Domain.Implementation.Repositories
                 .Where(u => u.AspNetUsersID == userID)
                 .ToList();
         }
+
+        public MostRecentTinyUrl GetTopTinyUrl()
+        {
+            return DataContext.MostRecentTinyUrls.FirstOrDefault();
+        }
+
+        public TinyUrl LoadUrl(string urlID)
+        {
+            return DataContext.TinyUrls.Single(u => u.TinyUrlString == urlID);
+        }
     }
 }

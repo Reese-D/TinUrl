@@ -11,5 +11,6 @@ namespace Domain.Library.Repositories
         List<TinyUrl> LoadAllUrls();
         List<TinyUrl> LoadUrlsForUser(string userID);
         TinyUrl CreateUrl(string url, string userID);
+        TinyUrl LoadUrl(string urlID);
     }
 }

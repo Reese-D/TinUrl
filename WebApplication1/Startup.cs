@@ -27,9 +27,13 @@ namespace WebApplication1
         {
             var container = new Container(x =>
             {
-                x.For<IUserRepository>().Use<UserRepository>();
-                x.For<IUserService>().Use<UserService>();
                 x.For<LinqToSqlDataDataContext>().Use(DataContext);
+
+                x.For<IUserRepository>().Use<UserRepository>();
+                x.For<IUserService>().Use<UserService>();              
+
+                x.For<ITinyUrlRepository>().Use<TinyUrlRepository>();
+                x.For<ITinyUrlService>().Use<TinyUrlService>();
             });
             DependencyResolver.SetResolver(new TinyUrlDependencyResolver(container));
         }

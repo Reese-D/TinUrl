@@ -1,0 +1,38 @@
+﻿@model WebApplication1.Models.HomeModels.ViewUrlsModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewUrls</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>Tiny Url</th>
+            <th>Referenced Url</th>
+        </tr>
+    
+    @foreach (var item in Model.urls) {
+        <tr>
+            <td>
+                @string.Format("http://localhost:54286/{0}", item.TinyUrlString)
+            </td>
+            <td>
+                @item.UrlString
+            </td>
+        </tr>
+    }
+    
+    </table>
+    <br/>
+    @if (Model.displayCreate)
+    {
+        @Html.ValidationMessage("url")
+        <div>
+            @{ Html.RenderAction("CreateTinyUrl"); }
+        </div>
+    }
+</body>
+</html>
