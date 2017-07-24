@@ -30,7 +30,11 @@ namespace WebApplication1.Controllers
                 return View();
 
             var redirectID = rawUrl.Substring(1, rawUrl.Length-1); //strip leading forward-slash
-            var redirectUrl = TinyUrlService.LoadUrl(redirectID).UrlString;
+            var redirectUrl = TinyUrlService.LoadUrl(redirectID)?.UrlString;
+            if(redirectUrl == null)
+            {
+                return RedirectToAction("custom404", "Errors");
+            }
             TinyUrlService.CreateAudit(redirectID);
             return Redirect(redirectUrl);
         }

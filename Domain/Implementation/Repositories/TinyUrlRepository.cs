@@ -74,7 +74,7 @@ namespace Domain.Implementation.Repositories
 
         public TinyUrl LoadUrl(string urlID)
         {
-            return DataContext.TinyUrls.Single(u => u.TinyUrlString == urlID);
+            return DataContext.TinyUrls.SingleOrDefault(u => u.TinyUrlString == urlID);
         }
 
         private TinyUrlsAuditTable createTinyUrlAudit(string tinyUrl, string url, string userID)

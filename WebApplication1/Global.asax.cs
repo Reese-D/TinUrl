@@ -22,5 +22,24 @@ namespace WebApplication1
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var serverError = Server.GetLastError() as HttpException;
+
+            if (serverError == null)
+                return;
+     
+            int errorCode = serverError.GetHttpCode();
+
+            if (errorCode != 404)
+                return;
+
+            Server.ClearError();
+            var helper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            Response.Redirect(helper.Action("custom404","Errors"));
+            
+            
+        }
     }
 }
