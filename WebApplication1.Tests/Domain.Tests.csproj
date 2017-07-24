@@ -100,9 +100,9 @@
       <Project>{56515D5B-CEDC-41FC-B210-9A401B240FDF}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebApplication1\WebApplication1.csproj">
+    <ProjectReference Include="..\WebApplication1\Turl.csproj">
       <Project>{3A71FD89-4DA8-4BBA-9935-F26DF992371A}</Project>
-      <Name>WebApplication1</Name>
+      <Name>Turl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

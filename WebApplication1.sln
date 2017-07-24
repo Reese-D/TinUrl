@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{3A71FD89-4DA8-4BBA-9935-F26DF992371A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turl", "WebApplication1\Turl.csproj", "{3A71FD89-4DA8-4BBA-9935-F26DF992371A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{56515D5B-CEDC-41FC-B210-9A401B240FDF} = {56515D5B-CEDC-41FC-B210-9A401B240FDF}
 		{B744CB72-61B4-42B9-A464-96D799895C66} = {B744CB72-61B4-42B9-A464-96D799895C66}
