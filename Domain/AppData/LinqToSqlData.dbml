@@ -18,6 +18,7 @@
       <Association Name="AspNetUser_AspNetUserLogin" Member="AspNetUserLogins" ThisKey="Id" OtherKey="UserId" Type="AspNetUserLogin" />
       <Association Name="AspNetUser_AspNetUserClaim" Member="AspNetUserClaims" ThisKey="Id" OtherKey="UserId" Type="AspNetUserClaim" />
       <Association Name="AspNetUser_TinyUrl" Member="TinyUrls" ThisKey="Id" OtherKey="AspNetUsersID" Type="TinyUrl" />
+      <Association Name="AspNetUser_TinyUrlAspNetUserJoinTable" Member="TinyUrlAspNetUserJoinTables" ThisKey="Id" OtherKey="AspNetUsersID" Type="TinyUrlAspNetUserJoinTable" />
     </Type>
   </Table>
   <Table Name="dbo.AspNetUserRoles" Member="AspNetUserRoles">
@@ -57,6 +58,7 @@
       <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UrlString" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="AspNetUsersID" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Association Name="TinyUrl_TinyUrlAspNetUserJoinTable" Member="TinyUrlAspNetUserJoinTables" ThisKey="TinyUrlString" OtherKey="TinyUrlString" Type="TinyUrlAspNetUserJoinTable" />
       <Association Name="AspNetUser_TinyUrl" Member="AspNetUser" ThisKey="AspNetUsersID" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
   </Table>
@@ -66,12 +68,28 @@
       <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.TinyUrlAspNetUserJoinTable" Member="TinyUrlAspNetUserJoinTables">
+    <Type Name="TinyUrlAspNetUserJoinTable">
+      <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AspNetUsersID" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="AspNetUser_TinyUrlAspNetUserJoinTable" Member="AspNetUser" ThisKey="AspNetUsersID" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
+      <Association Name="TinyUrl_TinyUrlAspNetUserJoinTable" Member="TinyUrl" ThisKey="TinyUrlString" OtherKey="TinyUrlString" Type="TinyUrl" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.TinyUrlsAuditTable" Member="TinyUrlsAuditTables">
     <Type Name="TinyUrlsAuditTable">
-      <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="UtcCreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UrlString" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="AspNetUsersID" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
     </Type>
   </Table>
+  <Function Name="dbo.GetTinyUrlsForUser" Method="GetTinyUrlsForUser">
+    <Parameter Name="userID" Type="System.String" DbType="NVarChar(128)" />
+    <ElementType Name="GetTinyUrlsForUserResult">
+      <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="UrlString" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="AspNetUsersID" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

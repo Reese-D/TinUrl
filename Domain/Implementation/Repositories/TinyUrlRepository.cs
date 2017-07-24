@@ -13,13 +13,14 @@ namespace Domain.Implementation.Repositories
         {
         }
 
-        public TinyUrl CreateUrl(string url, string tinyUrl, string userID)
+        public TinyUrl CreateUrl(string url, string tinyUrl, string userID, bool checkDuplicate = true)
         {
-            var duplicate = DataContext.TinyUrls.Any(t => t.TinyUrlString == tinyUrl);
-            if (duplicate)
+            var duplicate = DataContext.TinyUrls.Any(t => t.UrlString == url);
+            if (duplicate && checkDuplicate)
             {
-                return null;
+                return JoinUrl(userID, url);
             }
+            
             var user = DataContext.AspNetUsers.SingleOrDefault(u => u.Id == userID);
             if(user == null)
             {
@@ -56,8 +57,13 @@ namespace Domain.Implementation.Repositories
 
         public List<TinyUrl> LoadUrlsForUser(string userID)
         {
-            return DataContext.TinyUrls
-                .Where(u => u.AspNetUsersID == userID)
+            return DataContext.GetTinyUrlsForUser(userID)
+                .Select(u => new TinyUrl()
+                {
+                    AspNetUsersID = u.AspNetUsersID,
+                    TinyUrlString = u.TinyUrlString,
+                    UrlString = u.UrlString,
+                })
                 .ToList();
         }
 
@@ -80,6 +86,25 @@ namespace Domain.Implementation.Repositories
                 UrlString = url,
                 UtcCreatedDate = DateTime.UtcNow,
             };
+        }
+
+        private TinyUrl JoinUrl(string userID, string url)
+        {
+            var tinyUrl =  DataContext.TinyUrls.First(u => u.UrlString == url);
+            if(!DataContext.TinyUrlAspNetUserJoinTables
+                .Any(a => a.AspNetUsersID == userID && a.TinyUrlString == tinyUrl.TinyUrlString))
+            {
+                var urlJoin = new TinyUrlAspNetUserJoinTable()
+                {
+                    AspNetUsersID = userID,
+                    TinyUrlString = tinyUrl.TinyUrlString,
+                };
+                DataContext.TinyUrlAspNetUserJoinTables.InsertOnSubmit(urlJoin);
+                DataContext.SubmitChanges();
+            }
+
+            return tinyUrl;
+            
         }
     }
 }

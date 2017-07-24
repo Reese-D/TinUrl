@@ -27,7 +27,7 @@
         <elementListCompartment Id="8ffc366f-142f-49c2-ace3-81c65d0a0cf1" absoluteBounds="4.515, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.375 : 2.21875); (4.5 : 2.21875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.375 : 2.38064697265625); (4.5 : 2.38064697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/LinqToSqlDataDataContext/AspNetUser/AspNetUser_AspNetUserLogin" />
       <nodes>
         <classShapeMoniker Id="a02e3a11-abec-49f3-a818-b74ce10bcd8d" />
@@ -79,10 +79,30 @@
         <elementListCompartment Id="35f7ef72-c47b-4fcb-bb96-e5de2e8782b5" absoluteBounds="6.64, 3.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4b33a48a-f018-4ef7-b7aa-762b5e311130" absoluteBounds="6.875, 0.625, 2, 1.5785953776041666">
+    <classShape Id="c729d62e-d74d-4471-a84e-5f5b0f53c5d7" absoluteBounds="6.75, 0.5, 2, 1.1939925130208331">
+      <DataClassMoniker Name="/LinqToSqlDataDataContext/TinyUrlAspNetUserJoinTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99fb9e68-f875-4c7a-b265-51f1cd966506" absoluteBounds="6.765, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.375 : 3.50564697265625); (6.5625 : 3.50564697265625); (6.5625 : 2.9375); (7.75 : 2.9375); (7.75 : 1.69399251302083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LinqToSqlDataDataContext/AspNetUser/AspNetUser_TinyUrlAspNetUserJoinTable" />
+      <nodes>
+        <classShapeMoniker Id="a02e3a11-abec-49f3-a818-b74ce10bcd8d" />
+        <classShapeMoniker Id="c729d62e-d74d-4471-a84e-5f5b0f53c5d7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(0.5 : 4.94314697265625); (0.34 : 4.94314697265625); (0.34 : 0.34); (6.51 : 0.34); (6.51 : 1.09699625651042); (6.75 : 1.09699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LinqToSqlDataDataContext/TinyUrl/TinyUrl_TinyUrlAspNetUserJoinTable" />
+      <nodes>
+        <classShapeMoniker Id="aac03b8e-b5fb-4d2a-b0bb-b42260131202" />
+        <classShapeMoniker Id="c729d62e-d74d-4471-a84e-5f5b0f53c5d7" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d04bc53e-9b77-42c0-b3e8-9fe97ad1f0cc" absoluteBounds="8, 4.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/LinqToSqlDataDataContext/TinyUrlsAuditTable" />
       <nestedChildShapes>
-        <elementListCompartment Id="f0c8dfde-b8f9-42d9-b9b8-45d62833547e" absoluteBounds="6.89, 1.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="799ef485-3273-4b56-aa95-b29ef342afe2" absoluteBounds="8.015, 5.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -51,7 +51,7 @@ namespace Domain.Implementation.Services
             {
                 return null;
             }
-            return TinyUrlRepository.CreateUrl(url, tinyUrl, userID);
+            return TinyUrlRepository.CreateUrl(url, tinyUrl, userID, false);
         }
 
         public void CreateAudit(string tinyUrl)
