@@ -14,5 +14,6 @@ namespace Domain.Library.Repositories
         TinyUrl CreateUrl(string url, string tinyUrl, string userID);
         MostRecentTinyUrl GetTopTinyUrl();
         TinyUrl LoadUrl(string urlID);
+        void CreateAudit(string tinyUrl);
     }
 }

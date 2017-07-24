@@ -12,5 +12,7 @@ namespace Domain.Library.Services
         List<TinyUrl> LoadUrlsForUser(string userID);
         TinyUrl CreateUrl(string url, string userID);
         TinyUrl LoadUrl(string urlID);
+        TinyUrl CreateCustomUrl(string tinyUrl, string url, string userID);
+        void CreateAudit(string tinyUrl);
     }
 }

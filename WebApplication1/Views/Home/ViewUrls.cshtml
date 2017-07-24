@@ -27,12 +27,9 @@
     
     </table>
     <br/>
-    @if (Model.displayCreate)
-    {
-        @Html.ValidationMessage("url")
-        <div>
-            @{ Html.RenderAction("CreateTinyUrl"); }
-        </div>
-    }
+    @Html.ValidationMessage("url")
+    <div>
+        @{ Html.RenderAction("CreateTinyUrl"); }
+    </div>
 </body>
 </html>

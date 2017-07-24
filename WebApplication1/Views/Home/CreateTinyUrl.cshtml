@@ -6,6 +6,7 @@
 @using (Html.BeginForm("CreateTinyUrl", "Home", null, FormMethod.Post, new { @class = "url_form" }))
 {
     @Html.TextBoxFor(m => m.url)
+    @Html.TextBoxFor(m => m.alias)
     <input type="submit" name="SaveButton" value="Save" />
 }
 

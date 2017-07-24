@@ -66,4 +66,12 @@
       <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.TinyUrlsAuditTable" Member="TinyUrlsAuditTables">
+    <Type Name="TinyUrlsAuditTable">
+      <Column Name="TinyUrlString" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="UtcCreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UrlString" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="AspNetUsersID" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

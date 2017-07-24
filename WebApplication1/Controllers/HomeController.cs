@@ -31,7 +31,7 @@ namespace WebApplication1.Controllers
 
             var redirectID = rawUrl.Substring(1, rawUrl.Length-1); //strip leading forward-slash
             var redirectUrl = TinyUrlService.LoadUrl(redirectID).UrlString;
-
+            TinyUrlService.CreateAudit(redirectID);
             return Redirect(redirectUrl);
         }
 
@@ -48,7 +48,7 @@ namespace WebApplication1.Controllers
 
         [HttpGet]
         [RequiresLoggin]
-        public ActionResult ViewMyUrls(string userID, bool validUrl = true)
+        public ActionResult ViewMyUrls(string userID, bool validUrl = true, bool exists = false)
         {
             if (string.IsNullOrWhiteSpace(userID))
             {
@@ -62,12 +62,13 @@ namespace WebApplication1.Controllers
 
             if (!validUrl)
                 ModelState.AddModelError("url", "Invalid Uri supplied. perhaps you didn't preface it with http(s)?");
+            if (exists)
+                ModelState.AddModelError("url", "This alias already exists, please specify a new one");
             
             return View("ViewUrls", model);
         }
 
         [HttpGet]
-        [RequiresLoggin]
         public ActionResult CreateTinyUrl()
         {
             var model = new CreateTinyUrlModel();
@@ -75,19 +76,30 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        [RequiresLoggin]
         public ActionResult CreateTinyUrl(CreateTinyUrlModel model)
         {
-            var userID = ((AspNetUser)Session["User"]).Id;
-
+            var user = ((AspNetUser)Session["User"]);
+            var userID = user?.Id ?? "Everyone";
             Uri uriResult;
             var isValid = Uri.TryCreate(model.url, UriKind.Absolute, out uriResult) 
                 && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            TinyUrl result = null;
             if (isValid)
             {
-                TinyUrlService.CreateUrl(model.url, userID);
+                if (!string.IsNullOrWhiteSpace(model.alias))
+                {
+                    result = TinyUrlService.CreateCustomUrl(model.alias, model.url, userID);
+                }
+                else
+                {
+                    result = TinyUrlService.CreateUrl(model.url, userID);
+                }
             }
-            return RedirectToAction("ViewMyUrls", new { userID, validUrl = isValid });
+            if(userID == "Everyone")
+            {
+                return RedirectToAction("ViewUrls");
+            }
+            return RedirectToAction("ViewMyUrls", new { userID, validUrl = isValid, exists = result == null });
         }
     }
 }

@@ -135,6 +135,14 @@ namespace Domain.AppData
 				return this.GetTable<MostRecentTinyUrl>();
 			}
 		}
+		
+		public System.Data.Linq.Table<TinyUrlsAuditTable> TinyUrlsAuditTables
+		{
+			get
+			{
+				return this.GetTable<TinyUrlsAuditTable>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUsers")]
@@ -1374,6 +1382,87 @@ namespace Domain.AppData
 				if ((this._TinyUrlString != value))
 				{
 					this._TinyUrlString = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TinyUrlsAuditTable")]
+	public partial class TinyUrlsAuditTable
+	{
+		
+		private string _TinyUrlString;
+		
+		private System.DateTime _UtcCreatedDate;
+		
+		private string _UrlString;
+		
+		private string _AspNetUsersID;
+		
+		public TinyUrlsAuditTable()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinyUrlString", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string TinyUrlString
+		{
+			get
+			{
+				return this._TinyUrlString;
+			}
+			set
+			{
+				if ((this._TinyUrlString != value))
+				{
+					this._TinyUrlString = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UtcCreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime UtcCreatedDate
+		{
+			get
+			{
+				return this._UtcCreatedDate;
+			}
+			set
+			{
+				if ((this._UtcCreatedDate != value))
+				{
+					this._UtcCreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UrlString", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string UrlString
+		{
+			get
+			{
+				return this._UrlString;
+			}
+			set
+			{
+				if ((this._UrlString != value))
+				{
+					this._UrlString = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AspNetUsersID", DbType="NVarChar(128)")]
+		public string AspNetUsersID
+		{
+			get
+			{
+				return this._AspNetUsersID;
+			}
+			set
+			{
+				if ((this._AspNetUsersID != value))
+				{
+					this._AspNetUsersID = value;
 				}
 			}
 		}

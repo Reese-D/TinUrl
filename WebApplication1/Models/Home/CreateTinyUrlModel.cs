@@ -8,5 +8,6 @@ namespace WebApplication1.Models.HomeModels
     public class CreateTinyUrlModel
     {
         public string url { get; set; }
+        public string alias { get; set; }
     }
 }

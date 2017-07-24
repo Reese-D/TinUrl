@@ -45,6 +45,20 @@ namespace Domain.Implementation.Services
             return TinyUrlRepository.CreateUrl(url, tinyUrl, userID);
         }
 
+        public TinyUrl CreateCustomUrl(string tinyUrl, string url, string userID)
+        {
+            if(tinyUrl.Any(a => InvalidCharacters.Any(i => i == a)))
+            {
+                return null;
+            }
+            return TinyUrlRepository.CreateUrl(url, tinyUrl, userID);
+        }
+
+        public void CreateAudit(string tinyUrl)
+        {
+            TinyUrlRepository.CreateAudit(tinyUrl);
+        }
+
         public List<TinyUrl> LoadAllUrls()
         {
             return TinyUrlRepository.LoadAllUrls();
