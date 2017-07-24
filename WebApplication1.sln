@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebAppli
 		{B744CB72-61B4-42B9-A464-96D799895C66} = {B744CB72-61B4-42B9-A464-96D799895C66}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1.Tests", "WebApplication1.Tests\WebApplication1.Tests.csproj", "{2876277D-E917-4E5F-A4B5-55B9E5C72CA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "WebApplication1.Tests\Domain.Tests.csproj", "{2876277D-E917-4E5F-A4B5-55B9E5C72CA7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{56515D5B-CEDC-41FC-B210-9A401B240FDF}"
 	ProjectSection(ProjectDependencies) = postProject
