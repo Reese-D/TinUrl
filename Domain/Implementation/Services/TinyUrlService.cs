@@ -13,7 +13,7 @@ namespace Domain.Implementation.Services
         public List<char> InvalidCharacters = new List<char>()
         {
             '?', '/', '{', '}', '|', '^', '\\', '`', ']', '[', ';', '/', ':', '@', '&',
-            '=', '+', '$', ',', (char)127, ' ', '#'
+            '=', '+', '$', ',', (char)127, ' ', '#', '%'
         };
 
         public List<char> ValidCharacters = new List<char>();

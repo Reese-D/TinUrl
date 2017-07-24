@@ -43,7 +43,6 @@ namespace WebApplication1.Controllers
                 urls = TinyUrlService.LoadAllUrls(),
                 displayCreate = false,
             };
-
             return View(model);
         }
 
